@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+    <!-- Traveler's Profile Details Section -->
+
+    <section id="details">
+        <div id="details-wrapper">
+            <h2>Traveler's Profile</h2>
+
+            <!-- a default traveler's image -->
+            <img id="details-img" src="{% static '/images/default-traveler.png' %}" 
+                     alt="profile img" />
+            <!-- traveler's nickname -->
+            <p id="details-title">{{ traveler.nickname }}</p>
+
+            <!-- traveler's email and country -->
+            <p id="nutrition"><span>Email: </span>{{ traveler.email }}<span> Country: </span>{{ traveler.country }}</p>
+
+            <div id="info-wrapper">
+                <div id="details-description">
+                
+                    <!-- info (about me) if provided, skip it if there is no info -->
+                    {% if traveler.about_me %}
+                        <p><span>About me: </span>{{ traveler.about_me}}
+                    </p>
+                    {% endif %}
+
+                    <!-- if there are shared trips, otherwise skip -->
+                    {% if traveler.trips %}
+                        <p><span>Shared Trips: {{ trips_count }}</span></p>
+                    {% endif %}
+                
+                </div>
+                <!--Edit and Delete buttons -->
+                <div id="action-buttons">
+                    <a href="{% url 'edit_traveler' %}" id="edit-btn">Edit</a>
+                    <a href="{% url 'delete_traveler' %}" id="delete-btn">Delete</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

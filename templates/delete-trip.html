@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_content %}
+
+    <!-- Delete Trip Form -->
+    <section id="edit">
+        <div class="form">
+            <h2>Delete Trip</h2>
+            <form class="edit-form" method="POST" action="{% url 'delete_trip' trip_id=trip.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}
